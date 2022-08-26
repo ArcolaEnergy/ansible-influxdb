@@ -37,6 +37,7 @@ influxdb_meta_logging_enabled: "true"
 # [data]
 influxdb_data_dir: "{{ influxdb_base_data_dir }}/data"
 influxdb_wal_dir: "{{ influxdb_base_data_dir }}/wal"
+influxdb_data_wal_fsync_delay: "0s"
 influxdb_data_trace_logging_enabled: "false"
 influxdb_data_query_log_enabled: "true"
 influxdb_data_cache_max_memory_size: 1048576000

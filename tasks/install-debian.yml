@@ -7,13 +7,15 @@
 
 - name: Import InfluxData GPG signing key
   apt_key:
-    url: https://repos.influxdata.com/influxdb.key
     state: present
-    id: "0x2582E0C5"
+    id: D8FF8E1F7DF8B07E
+    url: https://repos.influxdata.com/influxdata-archive_compat.key
+    keyring: /usr/share/keyrings/influxdata-archive_compat.key
+  become: yes
 
 - name: Add InfluxData repository
   apt_repository:
-    repo: deb https://repos.influxdata.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ influxdb_repository_channel }}
+    repo: deb [signed-by=/usr/share/keyrings/influxdata-archive_compat.key] https://repos.influxdata.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ influxdb_repository_channel }}
     state: present
 
 - name: Install InfluxDB package
